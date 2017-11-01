@@ -1,0 +1,21 @@
+1.登录-userID从地址栏获取
+http://61.178.220.157:8889/ydqz/OAService.do?URL=odps/services/LoginService/logonIn&userID=16100000011&pwd=odps
+需要的数据为"ID":"1.104796395","OrgAlias":"s16100"
+
+2.获取个人的全部树列表 - ActorID 为从第一步获取的ID
+http://61.178.220.157:8889/ydqz/OAService.do?URL=odps/services/GetTreeNodeService/GetTreeNode&ActorID=1.104796395
+得到结果JSON后搜索“个人待办工作”
+需要的数据为 "NodeID": "55",
+
+3.获取某一个列表
+传入参数：
+String ActorID：用户登录信息中"ID"的值（例如用户16100000011的ID=1.104796395）
+String OrgAlias：用户登录信息中"OrgAlias"的值（这里为s16100）
+String NodeID：节点数（获取个人的全部树列表服务返回值中有节点数信息，你想获取哪个列表的数据就传入对应的NodeID即可，这里我获取的是个人待办的列表，所以传入值为28）
+String StartRow：条目开始行（从1开始）
+String EndRow：条目结束行（这里我传入了15，意思是一次获取15条数据；你可以自己决定一次要获取多少，传入对应的值即可）
+Boolean isAddCond：是否有查询条件（这里传入ture即可）
+
+http://61.178.220.157:8889/ydqz/OAService.do?
+URL=odps/services/DaibanService/SingleDaiban&ActorID=1.104796395&OrgAlias=s16100&Node
+ID=55&StartRow=1&EndRow=15&isAddCond=true
